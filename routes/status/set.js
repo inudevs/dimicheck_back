@@ -30,6 +30,7 @@ router.post('/', async (req, res) => {
   }
 
   member.status[number - 1] = status;
+  res.sendStatus(200);
 });
 
 export default router;
