@@ -23,13 +23,10 @@ router.post('/', async (req, res) => {
     return;
   }
 
-  switch (status) {
-    case Status.class:
-      member.current += 1;
-      break;
-    default:
-      member.cureent -= 1;
-      break;
+  if (status === Status.Class) {
+    member.current += 1;
+  } else {
+    member.current -= 1;
   }
 
   member.status[number - 1] = status;
