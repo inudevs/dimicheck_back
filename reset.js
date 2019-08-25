@@ -19,6 +19,8 @@ export default new CronJob({
         return s;
       },
     }));
+    // eslint-disable-next-line no-console
+    console.log('reset db');
   },
   start: false,
   timeZone: 'Asia/Seoul',
