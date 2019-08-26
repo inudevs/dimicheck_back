@@ -1,0 +1,52 @@
+swagger: 2.0
+tags:
+  - name: "status"
+    description: "Set status"
+schemes:
+  - "http"
+paths:
+  /status/set:
+    post:
+      tags:
+        - "status"
+      summary: "Set status"
+      description: ""
+      operationId: "setStatus"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - in: "body"
+          name: "body"
+          description: "Set status"
+          required: true
+          schema:
+            $ref: "#/definitions/Member"
+      responses:
+        200:
+          description: "OK"
+        401:
+          description: "Unauthorized"
+        404:
+          description: "Not Found"
+        405:
+          description: "Method Not Allowed"
+definitions:
+  Member:
+    type: "object"
+    properties:
+      grade:
+        type: "integer"
+      class:
+        type: "integer"
+      total:
+        type: "integer"
+      current:
+        type: "integer"
+      status:
+        type: "array"
+        items:
+          type: "integer"
+    xml:
+      name: "Member"
