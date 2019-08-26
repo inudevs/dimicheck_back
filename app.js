@@ -18,7 +18,6 @@ const swaggerDefinition = {
   basePath: '/',
 };
 
-// Options for the swagger docs
 const options = {
   swaggerDefinition,
   apis: ['./config/document.yaml'],
