@@ -25,10 +25,11 @@ router.post('/', async (req, res) => {
     res.sendStatus(404);
     return;
   }
-  const setValue = {};
-  setValue[`status.${number - 1}`] = [status1, status2];
+
   // 배열은 0번 부터 시작하므로 입력받은 번호에 -1
   // 그 데이터에 1타임과 2타임 데이터를 집어넣음
+  const setValue = {};
+  setValue[`status.${number - 1}`] = [status1, status2];
   Member.updateOne(
     {
       grade,
