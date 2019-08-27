@@ -52,7 +52,9 @@ paths:
                 type: "integer"
               number:
                 type: "integer"
-              status:
+              status1:
+                type: "integer"
+              status2:
                 type: "integer"
       responses:
         200:
