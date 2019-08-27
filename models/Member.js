@@ -1,11 +1,9 @@
-import { model, Schema } from 'mongoose';
+import { Schema, model } from 'mongoose';
 
 const Member = new Schema({
   grade: Number,
   class: Number,
-  total: Number,
-  current: Number,
-  status: [Number],
+  status: [[Number]],
 });
 
 export default model('Member', Member);
