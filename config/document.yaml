@@ -76,6 +76,8 @@ definitions:
       status:
         type: "array"
         items:
-          type: "integer"
+          type: "array"
+          items:
+            type: "integer"
     xml:
       name: "Member"
