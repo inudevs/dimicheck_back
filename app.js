@@ -1,21 +1,26 @@
-import express, { json, urlencoded, static as Static } from 'express';
-import { join } from 'path';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
+import express, { static as Static, json, urlencoded } from 'express';
 import { connect } from 'mongoose';
+import cookieParser from 'cookie-parser';
+import { join } from 'path';
+import logger from 'morgan';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
-import router from './routes';
 import reset from './reset';
+import router from './routes';
 
+// Swagger
 const swaggerDefinition = {
   info: {
+    // 설명
     description: 'Dimicheck Api Document System',
+    // 버전
     version: '1.0.0',
+    // 제목
     title: 'Dimicheck API',
   },
+  // 주소
   host: 'localhost:3000',
-  basePath: '/',
+  basePath: '/api',
 };
 
 const options = {
@@ -35,9 +40,12 @@ app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(Static(join(__dirname, 'public')));
 
+// Swagger 주소
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+// api 주소
 app.use('/api', router);
 
+// mongodb 연결
 connect(
   'mongodb://localhost:27017/test',
   { useNewUrlParser: true },
