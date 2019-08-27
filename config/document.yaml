@@ -5,6 +5,28 @@ tags:
 schemes:
   - "http"
 paths:
+  /status/get:
+    get:
+      tags:
+        - "status"
+      summary: "Get status"
+      description: ""
+      operationId: "getStatus"
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      responses:
+        200:
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Member"
+        404:
+          description: "Not Found"
+        500:
+          description: "Internal Server Error"
   /status/set:
     post:
       tags:
@@ -20,9 +42,18 @@ paths:
         - in: "body"
           name: "body"
           description: "Set status"
-          required: true
+          required: false
           schema:
-            $ref: "#/definitions/Member"
+            type: "object"
+            properties:
+              grade:
+                type: "integer"
+              class:
+                type: "integer"
+              number:
+                type: "integer"
+              status:
+                type: "integer"
       responses:
         200:
           description: "OK"
@@ -32,6 +63,8 @@ paths:
           description: "Not Found"
         405:
           description: "Method Not Allowed"
+        500:
+          description: "Internal Server Error"
 definitions:
   Member:
     type: "object"
@@ -39,10 +72,6 @@ definitions:
       grade:
         type: "integer"
       class:
-        type: "integer"
-      total:
-        type: "integer"
-      current:
         type: "integer"
       status:
         type: "array"
