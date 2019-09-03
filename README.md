@@ -2,11 +2,6 @@
 
 ## commands
 
-### installing dependencies
-```console
-yarn install
-```
-
 ### develop (nodemon)
 ```console
 yarn dev
