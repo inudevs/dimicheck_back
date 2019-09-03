@@ -23,13 +23,11 @@ export default new CronJob({
         },
         (err) => {
           if (err) {
-            // eslint-disable-next-line no-console
             console.error(err);
           }
         },
       );
     }
-    // eslint-disable-next-line no-console
     console.log('reset database');
   },
   start: false,

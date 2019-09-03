@@ -9,12 +9,12 @@ router.get('/', (_req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  // class, status1, status2, grade, number 5 가지 데이터를 post 방식으로 받음
+  // class, grade, status1, status2, number 5가지 데이터를 post 방식으로 받음
   const {
-    class: _class, status1, status2, grade, number,
+    class: _class, grade, status1, status2, number,
   } = req.body;
   // 없으면 에러
-  if (!(status1 && status2 && grade && _class && number)) {
+  if (!(_class && grade && status1 && status2 && number)) {
     res.sendStatus(401);
     return;
   }
@@ -40,7 +40,6 @@ router.post('/', async (req, res) => {
     },
     (err) => {
       if (err) {
-        // eslint-disable-next-line no-console
         console.error(err);
         res.sendStatus(500);
         return;
