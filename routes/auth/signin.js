@@ -33,13 +33,7 @@ router.post('/', async (req, res) => {
     // password와 salt 분리
     const splitPassword = user.password.split('|');
     // 입력받은 비밀번호와 분리한 salt를 사용해 암호화
-    const encryptPassword = await pbkdf2Sync(
-      password,
-      splitPassword[1],
-      200000,
-      64,
-      'sha512',
-    ).toString('base64');
+    const encryptPassword = await pbkdf2Sync(password, splitPassword[1], 200000, 64, 'sha512').toString('base64');
 
     // 일치하지 않으면 에러
     if (splitPassword[0] !== encryptPassword) {
@@ -89,7 +83,13 @@ router.post('/', async (req, res) => {
 
   // 디미고인 api에서 받아온 데이터를 자체 db서버에 저장
   const salt = randomBytes(64).toString('base64');
-  const encryptPassword = await pbkdf2Sync(password, salt, 200000, 64, 'sha512').toString('base64');
+  const encryptPassword = await pbkdf2Sync(
+    password,
+    salt,
+    200000,
+    64,
+    'sha512',
+  ).toString('base64');
 
   const newUser = new User();
   newUser.id = id;
