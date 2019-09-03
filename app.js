@@ -53,7 +53,6 @@ connect(
     if (err) {
       throw err;
     }
-    // eslint-disable-next-line no-console
     console.log('mongodb conncected');
     reset.start();
   },
