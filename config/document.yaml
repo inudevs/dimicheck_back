@@ -118,3 +118,30 @@ definitions:
             type: "integer"
     xml:
       name: "Member"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      password:
+        type: "string"
+      idx:
+        type: "integer"
+      name:
+        type: "string"
+      grade:
+        type: "string"
+      klass:
+        type: "string"
+      number:
+        type: "string"
+      serial:
+        type: "string"
+      photo:
+        type: "string"
+      email:
+        type: "string"
+      userType:
+        type: "string"
+      timestamp:
+        type: "date"
