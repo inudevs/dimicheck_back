@@ -1,4 +1,11 @@
 {
+  "name": "dimicheck_back",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "babel-node --presets=es2015 ./bin/www",
+    "dev": "nodemon --exec babel-node --presets=es2015 ./bin/www"
+  },
   "dependencies": {
     "cookie-parser": "^1.4.4",
     "cron": "^1.7.1",
