@@ -85,16 +85,12 @@ paths:
           schema:
             type: "object"
             properties:
-              grade:
-                type: "integer"
-              class:
-                type: "integer"
-              number:
-                type: "integer"
-              status1:
-                type: "integer"
-              status2:
-                type: "integer"
+              token:
+                type: "string"
+              status:
+                type: "array"
+                items:
+                  type: "integer"
       responses:
         200:
           description: "OK"
@@ -112,7 +108,7 @@ definitions:
     properties:
       grade:
         type: "integer"
-      class:
+      klass:
         type: "integer"
       status:
         type: "array"

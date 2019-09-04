@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { verify } from '../../middleware/auth';
 import Member from '../../models/Member';
 
 const router = Router();
@@ -9,18 +10,28 @@ router.get('/', (_req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  // class, grade, status1, status2, number 5가지 데이터를 post 방식으로 받음
-  const {
-    class: _class, grade, status1, status2, number,
-  } = req.body;
-  // 없으면 에러
-  if (!(_class && grade && status1 && status2 && number)) {
+  const { token, status } = req.body;
+  if (!token) {
     res.sendStatus(401);
     return;
   }
 
+  const user = verify(token);
+  if (!user.data) {
+    res.sendStatus(403);
+    return;
+  }
+
+  const {
+    grade, klass, number,
+  } = user.data;
+  if (!(grade && klass && number && status)) {
+    res.sendStatus(403);
+    return;
+  }
+
   // 학년과 반이 일치하는 Member 데이터를 찾음
-  const member = await Member.findOne({ grade, class: _class });
+  const member = await Member.findOne({ grade, klass });
   if (!member) {
     res.sendStatus(404);
     return;
@@ -29,11 +40,11 @@ router.post('/', async (req, res) => {
   // 배열은 0번 부터 시작하므로 입력받은 번호에 -1
   // 그 데이터에 1타임과 2타임 데이터를 집어넣음
   const setValue = {};
-  setValue[`status.${number - 1}`] = [status1, status2];
+  setValue[`status.${number - 1}`] = status;
   Member.updateOne(
     {
       grade,
-      class: _class,
+      klass,
     },
     {
       $set: setValue,

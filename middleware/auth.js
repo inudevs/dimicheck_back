@@ -3,10 +3,15 @@ import { randomBytes } from 'crypto';
 
 const secret = randomBytes(15).toString('base64');
 
-export function sign(_id) {
-  return _sign({ _id }, secret);
+export function sign(data) {
+  return _sign({ data }, secret);
 }
 
 export function verify(token) {
-  return _verify(token, secret);
+  return _verify(token, secret, (err, result) => {
+    if (err) {
+      return err;
+    }
+    return result;
+  });
 }

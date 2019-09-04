@@ -43,7 +43,7 @@ yarn start
 ## status code
 ```json
 {
-  "class": 0,
+  "klass": 0,
   "ingang": 1,
   "club": 2,
   "home": 3,

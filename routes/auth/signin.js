@@ -47,14 +47,14 @@ router.post('/', async (req, res) => {
       return;
     }
 
-    const token = sign(user._id);
+    const token = sign(user);
     if (!token) {
       res.sendStatus(500);
       return;
     }
 
-    const tokenId = verify(token);
-    if (!tokenId) {
+    const check = verify(token);
+    if (!check) {
       res.sendStatus(500);
       return;
     }
@@ -103,7 +103,7 @@ router.post('/', async (req, res) => {
   newUser.idx = userData.idx;
   newUser.name = userData.name;
   newUser.grade = userData.grade;
-  newUser.class = userData.klass;
+  newUser.klass = userData.klass;
   newUser.number = userData.number;
   newUser.serial = userData.serial;
   newUser.photo = userData.photo;
@@ -121,14 +121,14 @@ router.post('/', async (req, res) => {
       res.sendStatus(500);
     }
 
-    const token = sign(checkUser._id);
+    const token = sign(checkUser);
     if (!token) {
       res.sendStatus(500);
       return;
     }
 
-    const tokenId = verify(token);
-    if (!tokenId) {
+    const check = verify(token);
+    if (!check) {
       res.sendStatus(500);
       return;
     }

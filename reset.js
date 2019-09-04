@@ -11,10 +11,10 @@ export default new CronJob({
     const member = await Member.find();
     // 반의 개수만큼 (18개)
     for (let i = 0; i < member.length; i += 1) {
-      // 모든 학생의 상태를 Class로 초기화
+      // 모든 학생의 상태를 klass로 초기화
       const s = [];
       for (let j = 0; j < 35; j += 1) {
-        s[j] = [Status.class, Status.class];
+        s[j] = [Status.klass, Status.klass];
       }
       Member.updateOne(
         member[i],

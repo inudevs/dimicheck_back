@@ -6,7 +6,7 @@ const User = new Schema({
   idx: Number,
   name: String,
   grade: String,
-  class: String,
+  klass: String,
   number: String,
   serial: String,
   photo: String,

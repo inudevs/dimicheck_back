@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 
 const Member = new Schema({
   grade: Number,
-  class: Number,
+  klass: Number,
   status: [[Number]],
 });
 
