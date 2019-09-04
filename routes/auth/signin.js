@@ -47,7 +47,7 @@ router.post('/', async (req, res) => {
       return;
     }
 
-    const token = sign(user);
+    const token = sign(user.select('-password'));
     if (!token) {
       res.sendStatus(500);
       return;
@@ -116,7 +116,7 @@ router.post('/', async (req, res) => {
       return;
     }
 
-    const checkUser = await User.findOne({ id });
+    const checkUser = await User.findOne({ id }).select('-password');
     if (!checkUser) {
       res.sendStatus(500);
     }
