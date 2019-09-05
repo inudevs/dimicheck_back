@@ -47,7 +47,9 @@ router.post('/', async (req, res) => {
       return;
     }
 
-    const token = sign(user.select('-password'));
+    user.password = undefined;
+
+    const token = sign(user);
     if (!token) {
       res.sendStatus(500);
       return;
