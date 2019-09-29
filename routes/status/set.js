@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
   const {
     grade, klass, number,
   } = user.data;
-  if (!(grade && klass && number && status)) {
+  if (!(grade && klass && number && status && status.length === 2)) {
     res.sendStatus(403);
     return;
   }
