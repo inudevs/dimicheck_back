@@ -1,5 +1,6 @@
 export default {
   klass: 0,
+  reading: 0,
   ingang: 1,
   club: 2,
   home: 3,
