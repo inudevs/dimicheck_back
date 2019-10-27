@@ -5,8 +5,11 @@ import { join } from 'path';
 import logger from 'morgan';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
+import { config } from 'dotenv';
 import reset from './reset';
 import router from './routes';
+
+config();
 
 // Swagger
 const swaggerDefinition = {
@@ -19,7 +22,7 @@ const swaggerDefinition = {
     title: 'Dimicheck API',
   },
   // 주소
-  host: 'localhost:3000',
+  host: process.env.HOST,
   basePath: '/api',
 };
 
