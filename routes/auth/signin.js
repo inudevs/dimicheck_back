@@ -2,7 +2,7 @@ import { Router } from 'express';
 import request from 'request-promise-native';
 import { pbkdf2Sync, randomBytes } from 'crypto';
 import jwtDecode from 'jwt-decode';
-import { sign, verify } from '../../middleware/auth';
+import { sign } from '../../middleware/auth';
 import User from '../../models/User';
 
 const router = Router();
@@ -49,19 +49,14 @@ router.post('/', async (req, res) => {
 
     user.password = undefined;
 
-    const token = sign(user);
-    if (!token) {
+    const token = sign(user, false);
+    const refreshToken = sign(user, true);
+    if (!(token && refreshToken)) {
       res.sendStatus(500);
       return;
     }
 
-    const check = verify(token);
-    if (!check) {
-      res.sendStatus(500);
-      return;
-    }
-
-    res.send({ token });
+    res.send({ token, refreshToken });
     return;
   }
 
@@ -91,13 +86,7 @@ router.post('/', async (req, res) => {
 
   // 디미고인 api에서 받아온 데이터를 자체 db서버에 저장
   const salt = randomBytes(64).toString('base64');
-  const encryptPassword = await pbkdf2Sync(
-    password,
-    salt,
-    200000,
-    64,
-    'sha512',
-  ).toString('base64');
+  const encryptPassword = pbkdf2Sync(password, salt, 200000, 64, 'sha512').toString('base64');
 
   const newUser = new User();
   newUser.id = id;
@@ -123,19 +112,14 @@ router.post('/', async (req, res) => {
       res.sendStatus(500);
     }
 
-    const token = sign(checkUser);
-    if (!token) {
+    const token = sign(checkUser, false);
+    const refreshToken = sign(checkUser, true);
+    if (!(token && refreshToken)) {
       res.sendStatus(500);
       return;
     }
 
-    const check = verify(token);
-    if (!check) {
-      res.sendStatus(500);
-      return;
-    }
-
-    res.send({ token });
+    res.send({ token, refreshToken });
   });
 });
 
