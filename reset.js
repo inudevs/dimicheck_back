@@ -3,8 +3,8 @@ import Member from './models/Member';
 import Status from './config/status';
 
 export default new CronJob({
-  // 일요일 ~ 금요일 7시 정각에 실행
-  cronTime: '0 0 7 * * 0-5',
+  // 7시 정각에 실행
+  cronTime: '0 0 7 * * *',
   // 실행할 내용
   onTick: async () => {
     // 데이터베이스에서 Member값을 가져옴
