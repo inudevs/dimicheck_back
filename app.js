@@ -47,7 +47,7 @@ app.use('/api', router);
 
 // mongodb 연결
 connect(
-  'mongodb://localhost:27017/test',
+  process.env.DB,
   { useNewUrlParser: true },
   (err) => {
     if (err) {
