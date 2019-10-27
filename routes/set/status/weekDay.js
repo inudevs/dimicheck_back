@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { verify } from '../../middleware/auth';
-import Member from '../../models/Member';
+import { verify } from '../../../middleware/auth';
+import Member from '../../../models/Member';
 
 const router = Router();
 

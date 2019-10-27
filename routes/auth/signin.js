@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
 
   // 자체 db서버에 없는 경우이므로 디미고인 api 사용
   const dimi = await request({
-    uri: 'https://api.dimigo.in/auth',
+    uri: `${process.env.dimigoinApi}auth`,
     method: 'POST',
     body: {
       id,
